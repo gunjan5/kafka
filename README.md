@@ -9,10 +9,16 @@
 - Start Kafka server: `bin/kafka-server-start.sh config/server.properties`
 - Create a topic: `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test`
 - List topics: `bin/kafka-topics.sh --list --zookeeper localhost:2181`
-- Send some messages: ```bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test 
-                         Yello
-                         World
-                         how are yall doin```
+- Send some messages: 
+	```bash
+	 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test 
+
+         Yello
+
+         World
+
+         how are yall doin
+    ```
 - Start a consumer: `bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning`
 
 ## Multi-broker setup (3 nodes)
@@ -36,7 +42,9 @@
 - Start all 3 brokers: 
 	```bash
 	bin/kafka-server-start.sh config/server.properties &
+
 	bin/kafka-server-start.sh config/server-1.properties &
+	
 	bin/kafka-server-start.sh config/server-2.properties &
 	```
 - Create a topic: `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic`
