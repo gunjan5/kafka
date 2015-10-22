@@ -14,3 +14,30 @@
                          World
                          how are yall doin```
 - Start a consumer: `bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning`
+
+## Multi-broker setup (3 nodes)
+
+- Create/copy server config files: `bin/kafka-server-start.sh config/server-1.properties`
+- Second broker: `bin/kafka-server-start.sh config/server-1=2.properties`
+- Edit the config files with: 
+	```bash
+	config/server-1.properties:
+	    broker.id=1
+	    port=9093
+	    log.dir=/tmp/kafka-logs-1
+	 
+	config/server-2.properties:
+	    broker.id=2
+	    port=9094
+	    log.dir=/tmp/kafka-logs-2```
+
+- Start Zookeeper: `bin/zookeeper-server-start.sh config/zookeeper.properties`
+-Start all 3 brokers: 
+	```bash
+	bin/kafka-server-start.sh config/server.properties &
+	bin/kafka-server-start.sh config/server-1.properties &
+	bin/kafka-server-start.sh config/server-2.properties &
+	```
+- Create a topic: `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic`
+- Describe topic: `bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic`
+- 
