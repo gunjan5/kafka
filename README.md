@@ -35,16 +35,16 @@
 - Start Zookeeper: `bin/zookeeper-server-start.sh config/zookeeper.properties`
 - Start all 3 brokers: 
 	```bash
-	bin/kafka-server-start.sh config/server.properties &
-	bin/kafka-server-start.sh config/server-1.properties &
-	bin/kafka-server-start.sh config/server-2.properties &
+	 bin/kafka-server-start.sh config/server.properties &
+	 bin/kafka-server-start.sh config/server-1.properties &
+	 bin/kafka-server-start.sh config/server-2.properties &
 	```
 - Create a topic: `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic`
 - Describe topic: `bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic`
 - Start the consumer and send some messages: 
 	```bash
-	bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-replicated-topic
-	my test message 1
-	my test message 2
+	 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-replicated-topic
+	 my test message 1
+	 my test message 2
 	```
 - Start the consumer: `bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic my-replicated-topic`
