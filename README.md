@@ -36,9 +36,7 @@
 - Start all 3 brokers: 
 	```bash
 	bin/kafka-server-start.sh config/server.properties &
-	
 	bin/kafka-server-start.sh config/server-1.properties &
-	
 	bin/kafka-server-start.sh config/server-2.properties &
 	```
 - Create a topic: `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic`
